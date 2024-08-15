@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ServerController;
+use App\Http\Controllers\ServerUserController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Models\ServerUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,12 @@ Route::middleware('auth:api')->group(function () {
     Route::get('tasks/{id}',[TaskController::class,'show']);
     Route::put('tasksupdate/{id}',[TaskController::class,'update']);
     Route::delete('tasksdelete/{id}',[TaskController::class,'destroy']);
+
+    Route::post('servers/{code}/join',[ServerUserController::class,'store']);
+    Route::get('servers/{code}/users',[ServerUserController::class,'index']);
+    Route::delete('servers/{code}/leave',[ServerUserController::class,'destroy']);
+
+
 
 
 });
